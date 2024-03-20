@@ -29,7 +29,7 @@ class DatabaseHelper {
   // Query SQL function to getAllMahasiswa
   Future<List<MahasiswaModel>> getAllMahasiswa() async {
     Database db = await instance.database;
-    var result = await db.query('mahasiswa', orderBy: 'nana');
+    var result = await db.query('mahasiswa', orderBy: 'nama');
     List<MahasiswaModel> mahasiswaList = result.isNotEmpty
         ? result.map((e) => MahasiswaModel.fromMap(e)).toList()
         : [];

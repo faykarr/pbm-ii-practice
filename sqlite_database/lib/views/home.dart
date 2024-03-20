@@ -17,6 +17,8 @@ class _HomeState extends State<Home> {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Daftar Mahasiswa"),
+        centerTitle: true,
+        backgroundColor: Colors.blueAccent,
       ),
       body: FutureBuilder(
         future: DatabaseHelper.instance.getAllMahasiswa(),

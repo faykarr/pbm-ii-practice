@@ -12,9 +12,9 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Database SQLite Demo',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
+          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+          useMaterial3: true,
+          scaffoldBackgroundColor: Colors.cyan[200]),
       home: const Home(),
       debugShowCheckedModeBanner: false,
     );
