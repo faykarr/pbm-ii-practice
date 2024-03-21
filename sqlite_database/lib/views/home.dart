@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:sqlite_database/database_helper.dart';
-import 'package:sqlite_database/mahasiswa_model.dart';
+import 'package:sqlite_database/models/database_helper.dart';
+import 'package:sqlite_database/models/mahasiswa_model.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
