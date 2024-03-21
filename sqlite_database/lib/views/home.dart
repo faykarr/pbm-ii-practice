@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sqlite_database/models/database_helper.dart';
 import 'package:sqlite_database/models/mahasiswa_model.dart';
+import 'input_mahasiswa.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -48,9 +49,13 @@ class _HomeState extends State<Home> {
           }
         },
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        child: const Icon(Icons.add),
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: () {
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => const InputMahasiswa()));
+        },
+        icon: const Icon(Icons.add),
+        label: const Text('Tambah Data'),
       ),
     );
   }

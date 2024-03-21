@@ -22,7 +22,7 @@ class DatabaseHelper {
   // Initial function query SQL for create table
   Future _onCreate(Database db, int version) async {
     String sql =
-        'CREATE TABLE mahasiswa(id INTEGER PRIMARY KEY, nama TEXT, jenjang TEXT, prodi TEXT)';
+        'CREATE TABLE mahasiswa(id INTEGER PRIMARY KEY, nim TEXT UNIQUE, nama TEXT, jenjang TEXT, prodi TEXT)';
     await db.execute(sql);
   }
 
