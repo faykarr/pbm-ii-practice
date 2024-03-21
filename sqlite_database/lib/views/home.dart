@@ -45,7 +45,9 @@ class _HomeState extends State<Home> {
                         child: Card(
                           color: Colors.white70,
                           child: ListTile(
-                            title: Text(data.nama),
+                            title: Text(
+                              "${data.nim} -  ${data.nama}",
+                            ),
                             onTap: () {
                               setState(
                                 () {
