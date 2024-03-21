@@ -69,6 +69,19 @@ class _HomeState extends State<Home> {
                                 ),
                               );
                             },
+                            trailing: InkWell(
+                              child: Icon(
+                                Icons.delete_forever_rounded,
+                                size: 30,
+                                color: Colors.red[700],
+                              ),
+                              onTap: () {
+                                setState(() {
+                                  DatabaseHelper.instance
+                                      .deleteMahasiswa(data.id);
+                                });
+                              },
+                            ),
                           ),
                         ),
                       ))

@@ -37,7 +37,7 @@ class DatabaseHelper {
   }
 
   // Query SQL Function to getMahasiswaById
-  Future<List<MahasiswaModel>> getMahasiswaById(int id) async {
+  Future<List<MahasiswaModel>> getMahasiswaById(int? id) async {
     List<MahasiswaModel> mahasiswaList;
     Database db = await instance.database;
     var result = await db.query('mahasiswa', where: 'id = ?', whereArgs: [id]);
@@ -65,7 +65,7 @@ class DatabaseHelper {
   }
 
   // Query SQL Function to delete a mahasiswa Data
-  Future<int> deleteMahasiswa(int id) async {
+  Future<int> deleteMahasiswa(int? id) async {
     Database db = await instance.database;
     var result = db.delete('mahasiswa', where: 'id = ?', whereArgs: [id]);
     return result;
