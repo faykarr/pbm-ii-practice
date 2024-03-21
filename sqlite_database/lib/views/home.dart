@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:sqlite_database/models/database_helper.dart';
 import 'package:sqlite_database/models/mahasiswa_model.dart';
-import 'input_mahasiswa.dart';
+import 'package:sqlite_database/views/ubah_mahasiswa.dart';
+import 'package:sqlite_database/views/input_mahasiswa.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -17,7 +18,10 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Daftar Mahasiswa"),
+        title: const Text(
+          "Daftar Mahasiswa",
+          style: TextStyle(fontWeight: FontWeight.bold),
+        ),
         centerTitle: true,
         backgroundColor: Colors.blueAccent,
       ),
@@ -36,23 +40,49 @@ class _HomeState extends State<Home> {
             );
           } else {
             return ListView(
-                children: snapshot.data!
-                    .map((data) => Center(
-                          child: Card(
-                            color: Colors.white70,
-                            child: ListTile(
-                              title: Text(data.nama),
-                            ),
+              children: snapshot.data!
+                  .map((data) => Center(
+                        child: Card(
+                          color: Colors.white70,
+                          child: ListTile(
+                            title: Text(data.nama),
+                            onTap: () {
+                              setState(
+                                () {
+                                  if (selectedId == null) {
+                                    selectedId = data.id;
+                                  } else {
+                                    selectedId = null;
+                                  }
+                                },
+                              );
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => (UbahMahasiswa(
+                                    id: data.id,
+                                    nim: data.nim,
+                                    nama: data.nama,
+                                    jenjang: data.jenjang,
+                                    prodi: data.prodi,
+                                  )),
+                                ),
+                              );
+                            },
                           ),
-                        ))
-                    .toList());
+                        ),
+                      ))
+                  .toList(),
+            );
           }
         },
       ),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () {
-          Navigator.push(context,
-              MaterialPageRoute(builder: (context) => const InputMahasiswa()));
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const InputMahasiswa()),
+          );
         },
         icon: const Icon(Icons.add),
         label: const Text('Tambah Data'),

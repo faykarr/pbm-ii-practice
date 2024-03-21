@@ -3,15 +3,35 @@ import 'package:sqlite_database/models/database_helper.dart';
 import 'package:sqlite_database/models/mahasiswa_model.dart';
 import 'home.dart';
 
-class InputMahasiswa extends StatefulWidget {
-  const InputMahasiswa({super.key});
+class UbahMahasiswa extends StatefulWidget {
+  const UbahMahasiswa(
+      {super.key,
+      this.id,
+      required this.nim,
+      required this.nama,
+      required this.jenjang,
+      required this.prodi});
+
+  final int? id;
+  final String nim;
+  final String nama;
+  final String jenjang;
+  final String prodi;
 
   @override
-  State<InputMahasiswa> createState() => _InputMahasiswaState();
+  State<UbahMahasiswa> createState() => _UbahMahasiswaState();
 }
 
-class _InputMahasiswaState extends State<InputMahasiswa> {
-  int? selectedId;
+class _UbahMahasiswaState extends State<UbahMahasiswa> {
+  @override
+  void initState() {
+    super.initState();
+    nimController.text = widget.nim;
+    namaController.text = widget.nama;
+    jenjangController.text = widget.jenjang;
+    prodiController.text = widget.prodi;
+  }
+
   final TextEditingController nimController = TextEditingController();
   final TextEditingController namaController = TextEditingController();
   final TextEditingController jenjangController = TextEditingController();
@@ -22,7 +42,7 @@ class _InputMahasiswaState extends State<InputMahasiswa> {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          "Input Mahasiswa",
+          "Ubah Mahasiswa",
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
         centerTitle: true,
@@ -62,27 +82,25 @@ class _InputMahasiswaState extends State<InputMahasiswa> {
               ),
               ElevatedButton.icon(
                 onPressed: () async {
-                  await DatabaseHelper.instance.addMahasiswa(
+                  await DatabaseHelper.instance.updateMahasiswa(
                     MahasiswaModel(
-                      nim: nimController.text,
-                      nama: namaController.text,
-                      jenjang: jenjangController.text,
-                      prodi: prodiController.text,
-                    ),
+                        id: widget.id,
+                        nim: nimController.text,
+                        nama: namaController.text,
+                        jenjang: jenjangController.text,
+                        prodi: prodiController.text),
                   );
                   Navigator.pushAndRemoveUntil(
-                    // ignore: use_build_context_synchronously
-                    context,
-                    MaterialPageRoute(builder: (context) => const Home()),
-                    (route) => false,
-                  );
+                      // ignore: use_build_context_synchronously
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const Home(),
+                      ),
+                      (route) => false);
                 },
                 icon: const Icon(Icons.save),
                 label: const Text('Simpan Data'),
-              ),
-              const SizedBox(
-                height: 10,
-              ),
+              )
             ],
           ),
         ),
