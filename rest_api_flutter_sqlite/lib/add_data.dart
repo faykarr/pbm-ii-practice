@@ -16,7 +16,8 @@ class _AddDataState extends State<AddData> {
 
   void addData() {
     var url = Uri.parse(
-        'https://6294e329a7203b3ed07364b1.mockapi.io/testapp/mahasiswa');
+      'https://6294e329a7203b3ed07364b1.mockapi.io/testapp/mahasiswa',
+    );
 
     http.post(url, body: {
       'nim': nimController.text,
@@ -114,6 +115,10 @@ class _AddDataState extends State<AddData> {
               },
               icon: const Icon(Icons.save),
               label: const Text('Simpan Data'),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.indigo,
+                foregroundColor: Colors.white,
+              ),
             )
           ],
         ),

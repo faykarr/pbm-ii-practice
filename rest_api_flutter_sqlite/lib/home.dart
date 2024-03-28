@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:rest_api_flutter_sqlite/add_data.dart';
+import 'package:rest_api_flutter_sqlite/edit_data.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -84,6 +85,17 @@ class ItemList extends StatelessWidget {
                 subtitle: Text("${list[index]['nim']}"),
               ),
             ),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => EditData(
+                    list: list,
+                    index: index,
+                  ),
+                ),
+              );
+            },
           ),
         );
       },
