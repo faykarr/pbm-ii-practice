@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:rest_api_flutter_sqlite/add_data.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -22,14 +23,22 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey.shade300,
+      backgroundColor: Colors.indigo.shade50,
       appBar: AppBar(
         title: const Text("Data Mahasiswa - Mock API"),
         centerTitle: true,
         leading: const Icon(Icons.people_alt),
+        backgroundColor: Colors.indigo[100],
       ),
       floatingActionButton: FloatingActionButton.extended(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const AddData(),
+            ),
+          );
+        },
         label: const Text("Tambah Data"),
         icon: const Icon(Icons.person_add),
       ),
